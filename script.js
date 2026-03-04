@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let choice = parseInt(Math.random() * 10) % 3;
     
@@ -16,4 +19,3 @@ function getHumanChoice() {
     return choice;
 }
 
-console.log(getHumanChoice());
