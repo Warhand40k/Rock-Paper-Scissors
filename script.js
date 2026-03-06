@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    let choice = parseInt(Math.random() * 10) % 3;
+    let choice = Math.floor(Math.random() * 3);
     return (choice === 0) ? 'ROCK':(choice === 1) ? 'PAPER':'SCISSORS';
 }
 
