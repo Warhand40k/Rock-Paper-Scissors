@@ -16,7 +16,7 @@ function playGame() {
         humanChoice = humanChoice.toUpperCase();
         
         if (humanChoice === computerChoice) {
-            console.log(`It's a tie! ${humanChoice} does not beat ${computerChoice}`)
+            return `It's a tie! ${humanChoice} does not beat ${computerChoice}`;
         } else {
             switch (humanChoice) {
                 case 'ROCK':
