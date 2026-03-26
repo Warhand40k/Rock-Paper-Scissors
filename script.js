@@ -21,60 +21,54 @@ function playGame() {
             switch (humanChoice) {
                 case 'ROCK':
                     if(computerChoice === 'PAPER') {
-                        console.log("You lose! PAPER beats ROCK");
                         computerScore += 1;
+                        return "You lose! PAPER beats ROCK";
                     } else if(computerChoice === 'SCISSORS') {
-                        console.log("You win! ROCK beats SCISSORS");
                         humanScore += 1;
+                        return "You win! ROCK beats SCISSORS";
                     }
 
                     break;
                 
                 case 'PAPER':
                     if(computerChoice === 'SCISSORS') {
-                        console.log("You lose! SCISSORS beats PAPER");
                         computerScore += 1;
+                        return "You lose! SCISSORS beats PAPER";
                     } else if(computerChoice === 'ROCK') {
-                        console.log("You win! PAPER beats ROCK");
                         humanScore += 1;
+                        return "You win! PAPER beats ROCK";
                     }
 
                     break;
                 
                 case 'SCISSORS':
                     if(computerChoice === 'ROCK') {
-                        console.log("You lose! ROCK beats SCISSORS");
                         computerScore += 1;
+                        return "You lose! ROCK beats SCISSORS";
                     } else if(computerChoice === 'PAPER') {
-                        console.log("You win! SCISSORS beats PAPER");
                         humanScore += 1;
+                        return "You win! SCISSORS beats PAPER";
                     }
 
                     break;
-
-                default:
-                    console.log("Invalid choice! Try again");
-                    playRound(getHumanChoice(), getComputerChoice());
             }
         }
     }
 
+    const btn = document.querySelectorAll('button');
+    const container = document.querySelector('div');
+    const status = document.createElement('p');
+    container.appendChild(status);
+    const score = document.createElement('p');
+    container.appendChild(score);
 
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-
-    console.log(`Your score: ${humanScore}\nComputer score: ${computerScore}`);
-
-    if (humanScore > computerScore) {
-        alert("You win!");
-    } else if (humanScore === computerScore) {
-        alert("It's a tie!");
-    } else {
-        alert("You lose!");
-    }
+    btn.forEach((button) => {
+        button.addEventListener('click', event => {
+            const selection = event.target.id;
+            status.textContent = playRound(selection, getComputerChoice());
+            score.textContent = `Your score: ${humanScore}\nComputer score: ${computerScore}`;
+        });
+    });
 }
 
 playGame();
