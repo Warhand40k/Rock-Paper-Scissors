@@ -21,10 +21,10 @@ function playGame() {
             switch (humanChoice) {
                 case 'ROCK':
                     if(computerChoice === 'PAPER') {
-                        computerScore += 1;
+                        computerScore++;
                         return "You lose! PAPER beats ROCK";
                     } else if(computerChoice === 'SCISSORS') {
-                        humanScore += 1;
+                        humanScore++;
                         return "You win! ROCK beats SCISSORS";
                     }
 
@@ -32,10 +32,10 @@ function playGame() {
                 
                 case 'PAPER':
                     if(computerChoice === 'SCISSORS') {
-                        computerScore += 1;
+                        computerScore++;
                         return "You lose! SCISSORS beats PAPER";
                     } else if(computerChoice === 'ROCK') {
-                        humanScore += 1;
+                        humanScore++;
                         return "You win! PAPER beats ROCK";
                     }
 
@@ -43,10 +43,10 @@ function playGame() {
                 
                 case 'SCISSORS':
                     if(computerChoice === 'ROCK') {
-                        computerScore += 1;
+                        computerScore++;
                         return "You lose! ROCK beats SCISSORS";
                     } else if(computerChoice === 'PAPER') {
-                        humanScore += 1;
+                        humanScore++;
                         return "You win! SCISSORS beats PAPER";
                     }
 
@@ -61,13 +61,24 @@ function playGame() {
     container.appendChild(status);
     const score = document.createElement('p');
     container.appendChild(score);
+    const winner = document.createElement('p');
+    container.appendChild(winner);
+
+    let displayResults = (event) => {
+        const selection = event.target.id;
+        status.textContent = playRound(selection, getComputerChoice());
+        score.textContent = `Your score: ${humanScore} Computer score: ${computerScore}`;
+        if(humanScore === 5 || computerScore === 5) {
+            btn.forEach((button) => {
+                button.removeEventListener('click', displayResults);
+            });
+            status.remove();
+            winner.textContent = (humanScore === 5) ? 'You win!' : 'You lose!';
+        }
+    }
 
     btn.forEach((button) => {
-        button.addEventListener('click', event => {
-            const selection = event.target.id;
-            status.textContent = playRound(selection, getComputerChoice());
-            score.textContent = `Your score: ${humanScore}\nComputer score: ${computerScore}`;
-        });
+        button.addEventListener('click', displayResults);
     });
 }
 
