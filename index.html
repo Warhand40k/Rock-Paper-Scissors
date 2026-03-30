@@ -5,14 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rock Paper Scissors</title>
         <script src="script.js" defer></script>
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-        
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
+    
+        <header id="appbar">
+            <h1 class="slackey-regular">ROCK PAPER SCISSORS</h1>
+        </header>
 
-        <div></div>
-
+        <div id="container">
+             <div id="console">
+                <div id="screen" class="hide-scrollbar">
+                </div>
+                <div id="button-area">
+                    <button id="play-button">
+                        <img src="./assets/icons/on-button.svg" draggable="false" width="100vh" alt="On button">
+                    </button>
+                </div>
+             </div>
+        </div>
     </body>
 </html>
